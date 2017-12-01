@@ -1,4 +1,4 @@
-unit frmSSSplashUnit; x
+unit frmSSSplashUnit;
 
 interface
 

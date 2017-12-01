@@ -1,4 +1,4 @@
-unit SSSplash; x
+unit SSSplash;
 
 interface
 
