@@ -1,4 +1,4 @@
-program Splash;
+program Splash; x
 
 uses
   Forms,

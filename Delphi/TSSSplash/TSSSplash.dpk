@@ -1,4 +1,4 @@
-package TSSSplash;
+package TSSSplash;x
 
 {$R *.RES}
 {$R 'SSSplash.dcr'}
