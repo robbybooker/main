@@ -1,4 +1,4 @@
-object frmSSSplash: TfrmSSSplash
+object frmSSSplash: TfrmSSSplash x
   Left = 605
   Top = 346
   BorderIcons = []
