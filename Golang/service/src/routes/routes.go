@@ -1,11 +1,13 @@
 package routes
 
 import (
-	"controller"
+	"maths"
 	"channels"
+	"mariadb"
 )
 
 type Routes struct {
-	Controller controller.ControllerInterface
+	Maths maths.MathsInterface
 	Channels channels.ChannelsInterface
+	Database mariadb.DatabaseInterface
 }

@@ -1,10 +1,11 @@
 package main
 
 import (
-	"controller"
+	"maths"
 	"fmt"
 	"routes"
 	"channels"
+	"mariadb"
 	"github.com/ant0ine/go-json-rest/rest"
 	"net/http"
 	"status_route"
@@ -12,8 +13,9 @@ import (
 
 func main() {
 	r := routes.Routes{
-		Controller: controller.New(),
+		Maths: maths.New(),
 		Channels:   channels.New(),
+		Database: mariadb.New(),
 	}
 
 	//number := 101
@@ -33,13 +35,13 @@ func main() {
 	//channelValue := <-c
 	//fmt.Println(channelValue)
 
-	api := createRoutes(r.Controller)
-	http.ListenAndServe(":8000", api.MakeHandler())
+	api := createRoutes(r)
+	http.ListenAndServe(":8001", api.MakeHandler())
 
 	fmt.Println("COMPLETE")
 }
 
-func createRoutes(cc controller.ControllerInterface) *rest.Api {
+func createRoutes(routes routes.Routes) *rest.Api {
 	api := rest.NewApi()
 	//api.Use(middleware.NewStack(VERSION, BUILD_NUMBER, false, false)...)
 	//api.Use(auth.NewAuthMiddleware(cfg.Auth.PublicKey, true, false))
@@ -48,7 +50,7 @@ func createRoutes(cc controller.ControllerInterface) *rest.Api {
 
 	router, err := rest.MakeRouter(
 		statusInformation.GetRoute(),
-		rest.Get("/dbversion", cc.GetDbVersion),
+		rest.Get("/dbversion", routes.Database.GetDbVersion),
 	)
 
 	if err != nil {

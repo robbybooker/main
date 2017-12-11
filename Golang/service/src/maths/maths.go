@@ -1,4 +1,4 @@
-package controller
+package maths
 
 import (
 	"database/sql"
@@ -8,11 +8,11 @@ import (
 	"github.com/ant0ine/go-json-rest/rest"
 )
 
-type controller struct {
+type maths struct {
 	counter int
 }
 
-func New() *controller {
+func New() *maths {
 
 	//ii := int(400)
 
@@ -22,7 +22,7 @@ func New() *controller {
 
 	//fmt.Println(ii)
 
-	moo := controller {}
+	moo := maths {}
 	moo.counter = 10
 	return &moo;
 
@@ -30,23 +30,23 @@ func New() *controller {
 	//return &controller{}
 }
 
-func (this *controller) AddNumbers(n1 int, n2 int) int {
+func (this *maths) AddNumbers(n1 int, n2 int) int {
 	return n1 + n2
 }
 
-func (this *controller) IncrementNumber(n1 *int) {
+func (this *maths) IncrementNumber(n1 *int) {
 	*n1++
 }
 
-func (this *controller) IncrementCounter() {
+func (this *maths) IncrementCounter() {
 	this.counter++;
 }
 
-func (this *controller) ShowCounter() {
+func (this *maths) ShowCounter() {
 	fmt.Println(this.counter);
 }
 
-func (this *controller) Error() {
+func (this *maths) Error() {
 	defer func() {
 		fmt.Println("DEFERRING")
 		if r := recover(); r != nil {
@@ -64,7 +64,7 @@ func (this *controller) Error() {
 	recover()
 }
 
-func (this *controller) GetDbVersion(w rest.ResponseWriter, r *rest.Request) {
+func (this *maths) GetDbVersion(w rest.ResponseWriter, r *rest.Request) {
 	db, _ := sql.Open("mysql", "root:woofwoof@/rob")
 	defer db.Close()
 
@@ -75,6 +75,6 @@ func (this *controller) GetDbVersion(w rest.ResponseWriter, r *rest.Request) {
 	w.WriteJson(version)
 }
 
-func (this *controller) ChannelPlay() {
+func (this *maths) ChannelPlay() {
 
 }
