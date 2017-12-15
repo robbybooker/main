@@ -3,6 +3,6 @@ package maths
 type MathsInterface interface {
 	IncrementNumber(*int)
 	IncrementCounter()
-	ShowCounter()
+	GetCounter() int
 	Error()
 }

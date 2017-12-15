@@ -1,11 +1,9 @@
 package maths
 
 import (
-	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"int_type"
-	"github.com/ant0ine/go-json-rest/rest"
 )
 
 type maths struct {
@@ -13,21 +11,10 @@ type maths struct {
 }
 
 func New() *maths {
-
-	//ii := int(400)
-
 	i := int_type.IntType(3)
-
 	i.Increment()
 
-	//fmt.Println(ii)
-
-	moo := maths {}
-	moo.counter = 10
-	return &moo;
-
-	//return new(controller)
-	//return &controller{}
+	return &maths{counter: 10}
 }
 
 func (this *maths) AddNumbers(n1 int, n2 int) int {
@@ -42,8 +29,8 @@ func (this *maths) IncrementCounter() {
 	this.counter++;
 }
 
-func (this *maths) ShowCounter() {
-	fmt.Println(this.counter);
+func (this *maths) GetCounter() int {
+	return this.counter;
 }
 
 func (this *maths) Error() {
@@ -54,27 +41,10 @@ func (this *maths) Error() {
 		}
 	}()
 
-	fmt.Println("wwwwwwwwwww")
-
 	b := 0
 	a := 1 / b
 
 	fmt.Println(a)
 	panic("ERROR")
 	recover()
-}
-
-func (this *maths) GetDbVersion(w rest.ResponseWriter, r *rest.Request) {
-	db, _ := sql.Open("mysql", "root:woofwoof@/rob")
-	defer db.Close()
-
-	var version string
-	db.QueryRow("SELECT VERSION()").Scan(&version)
-	fmt.Println("Connected to:", version)
-
-	w.WriteJson(version)
-}
-
-func (this *maths) ChannelPlay() {
-
 }
